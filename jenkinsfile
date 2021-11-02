@@ -1,0 +1,38 @@
+//declarative pipeline
+pipeline {
+    agent any
+        stages {
+            stage("clone repo"){
+                steps{
+                    git branch: "*/($BRANCH_NAME)",
+                    URL: "https://github.com/Sree903012/boxfuse-sample-java-war-hello.git"
+                    echo "git repo created"
+                }
+            } 
+            stage("Build stage") {
+                    steps {
+                        echo "build code"
+                        sh "mvn clean package"
+                    }
+
+            }
+            stage("upload rikky1015 to s3 ") {
+                steps {
+                    sh "aws s3 cp target/*.war s3://rikky1015/$JOB_NAME/$BRANCH_NAME/%BUILD_NUMBER/""
+                    echo "code deployed"
+                }
+            }
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+}
