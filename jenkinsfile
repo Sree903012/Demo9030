@@ -14,7 +14,7 @@ pipeline {
         }
             stage("Build stage") {
                 steps {
-                            echo "This is a Build stage, we use MVN clean package"
+                            echo "This is a Build stage, use MVN clean package"
                             sh "mvn clean package"
                     }
             }
