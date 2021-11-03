@@ -22,7 +22,7 @@ pipeline {
 
         stage("Upload artifacts to s3") {
             steps {
-                echo "Upload artifacts in S3"
+                echo "Upload artifacts into S3"
                 sh "aws s3 cp target/*.war s3://sree9030/$JOB_NAME/$BUILD_NUMBER/" 
             }
 
