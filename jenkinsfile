@@ -7,12 +7,11 @@ pipeline {
         stage("clone Git repo"){
             steps{
                 git branch: 'master',
-                url: 'https://github.com/Sree903012/demo3.git'
+                url: 'https://github.com/Sree903012/boxfuse-sample-java-war-hello.git'
                 sh "ls -lat"
             }
             
         }
-
             stage("Build stage") {
                 steps {
                             echo "This is a Build stage, we use MVN clean package"
