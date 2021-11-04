@@ -13,7 +13,7 @@
           }
             stage("build a code") {
                 steps {
-                        echo "build a code"
+                        echo "build  code"
                        sh "mvn clean package" 
 
                 }
