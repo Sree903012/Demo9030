@@ -1,39 +1,42 @@
-//declarative pipeline
-
-pipeline {
-    agent any
-
-    stages {
-        stage("clone Git repo"){
-            steps{
-                git branch: 'master',
+//declartive pipeline
+ pipeline {
+     agent any
+      stages {
+          stage("clone git repo") {
+              steps {
+                  echo "clone git repo"
+                  git branch: 'master',
                 url: 'https://github.com/Sree903012/boxfuse-sample-java-war-hello.git'
                 sh "ls -lat"
-            }
-            
-        }
-            stage("Build stage") {
+
+              }
+          }
+            stage("build a code") {
                 steps {
-                            echo "This a Build stage, use MVN clean package"
-                            sh "mvn clean package"
-                    }
+                        echo "build a code"
+                       sh "mvn clean package" 
+
+                }
             }
 
-        stage("Upload artifacts to s3") {
-            steps {
-                echo "Upload artifacts into S3"
-                sh "aws s3 cp target/*.war s3://sree9030/$JOB_NAME/$BUILD_NUMBER/" 
+            stage("upload artifacts") {
+                steps {
+                    echo "upload s3"
+                    sh "aws s3 cp target/*.war s3://sree9030/$JOB_NAME/$BUILD_NUMBER/" 
+
+                }
+
             }
 
+            stage("deploy in tomcat"){
+                steps {
+                    echo "deploy in tomcat server"
+                    sh "aws s3://sree9030/$JOB_NAME/$BUILD_NUMBER/ var/lib/tomcat/webapps"
+                }
 
-        }
-
-        stage("Deploy Tomcat server"){
-            steps {
-                echo "Deploy in tomcat server"
             }
-        }
-    }
 
-}
+      }
 
+
+ }
