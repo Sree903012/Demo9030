@@ -26,15 +26,7 @@
 
                 }
 
-            }
-
-            stage("deploy in tomcat"){
-                steps {
-                    echo "deploy in tomcat server"
-                    sh "aws s3://sree9030/$JOB_NAME/$BUILD_NUMBER/ var/lib/tomcat/webapps"
-                }
-
-            }
+            }  
 
       }
 
