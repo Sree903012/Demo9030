@@ -8,7 +8,7 @@
                   git branch: 'master'
             stage("build a code") {
                 steps {
-                        echo "build  code"
+                        echo "build  a code"
                        sh "mvn clean package" 
 
                 }
