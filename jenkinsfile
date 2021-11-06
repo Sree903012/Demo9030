@@ -5,12 +5,7 @@
           stage("clone git repo") {
               steps {
                   echo "clone git repo"
-                  git branch: 'master',
-                url: 'https://github.com/Sree903012/boxfuse-sample-java-war-hello.git'
-                sh "ls -lat"
-
-              }
-          }
+                  git branch: 'master'
             stage("build a code") {
                 steps {
                         echo "build  code"
