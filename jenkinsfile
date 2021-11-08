@@ -1,3 +1,65 @@
+pipeline {
+    agent any
+     stages{
+         stage("git repo"){
+             steps{
+             git branch: 'master', 
+                   url: 'https://github.com/Sree903012/boxfuse-sample-java-war-hello.git'
+             }
+         }
+
+        stage("build a code"){
+            steps {
+                sh "mvn clean package"
+                
+            }
+           
+        }
+
+        stage("deploy a code"){
+            steps {
+        sh "scp -o StrictHostKeyChecking=no -i /tmp/sree.pem /var/lib/jenkins/workspace/practice1/target/*.war ec2-user@18.234.103.77:/tmp"
+         sh "ssh -o StrictHostKeyChecking=no -i /tmp/sree.pem ec2-user@18.234.103.77 'sudo cp /tmp/*.war /var/lib/tomcat/webapps'" 
+      
+            }
+        }
+     }   
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //declartive pipeline
  pipeline {
      agent any
